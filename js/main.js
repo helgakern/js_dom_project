@@ -61,3 +61,10 @@ getComputedStyle(inbreadDog) // will return the computed/real style of the node
 larryTheLion.outerHTML = "<div id='larry-the-lion' class='doggo fighter' style='color: red'><h2>Lettuce The Lion</h2></div>"
 
 // <node>.innerText is a setter/getter for the text within a node
+
+// changing ids and classes
+
+// <node>.id -> .id is getter/setter for the id property
+// <node>.className -> .className is getter/setter for the class property. We don't use class because it is a reserved word in Javascript.
+
+toxicTim.classList // classList is a abstraction over className. Lets us view/edit the classes of a node easier by providing us methods like add()/remove()
