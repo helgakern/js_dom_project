@@ -68,3 +68,91 @@ larryTheLion.outerHTML = "<div id='larry-the-lion' class='doggo fighter' style='
 // <node>.className -> .className is getter/setter for the class property. We don't use class because it is a reserved word in Javascript.
 
 toxicTim.classList // classList is a abstraction over className. Lets us view/edit the classes of a node easier by providing us methods like add()/remove()
+
+// getAttribute
+// setAttribute
+
+toxicTim.getAttribute('class') // returns the value of the class attribute
+// you can add custom attributes to a node using setAttribute
+toxicTim.setAttribute('bark', 'woof')
+// you can retrieve custom attributes from a node using getAttribute
+
+// if you wanted to add data/custom attributes to a node you want to append "data-"
+toxicTim.setAttribute('data-speak', 'woof')
+
+// this way you can have acces to the custom data via a .dataset property
+toxicTim.dataset.speak // returns "woof"
+
+
+if (false) {
+    // Exercise Remove all the `doggo` and `fighter` class from every div
+    // 1) select all the nodes
+    const divs = document.querySelectorAll('div')
+    // 2) iterate over all the nodes
+    divs.forEach(node => {
+        // 3) remove classes from nodes
+        if (node.getAttribute('class')) { // checking to see if the node has a class/className attribute
+            if (node.getAttribute('class').includes('doggo')) { // check if class has value that includes doggo
+                node.setAttribute('class', '') // set the class attribute to empty string
+            }
+        }
+    })
+}
+
+// Remove
+
+// <node>.remove() is a method used to delete a node from the dom
+
+// Exercises: Vandalise the Arena
+
+// 1)
+
+if (false) {
+    const t2 = document.getElementsByClassName('team')
+
+    for (const node of t2) {
+        node.style.backgroundColor = 'red'
+    }
+
+    // 2)
+
+    const d2 = document.querySelectorAll('.doggo')
+
+    d2.forEach(node => {
+        node.innerText = "Rob The Slob";
+    })
+
+    // 3)
+
+    d2.forEach(node => {
+        node.style.backgroundImage = "url(https://d17fnq9dkz9hgj.cloudfront.net/uploads/2018/03/Scottish-Fold_01.jpg)"
+    })
+}
+
+// Creating Elements
+
+const drillBitDarrel = document.createElement('div')
+// add id
+drillBitDarrel.id = 'drill-bit-darrel'
+// add classes
+// drillBitDarrel.className = 'doggo fighter'
+drillBitDarrel.classList.add('doggo')
+drillBitDarrel.classList.add('fighter')
+// add a h1 tag with the name
+drillBitDarrel.innerHTML = '<h1>Drill Bit Darrel</h1>'
+drillBitDarrel.style.backgroundImage = 'url(./images/drill_bit_darel.jpg)'
+
+// 1) grab the node we want to append to
+const teamTeal = document.querySelector('.teal.team')
+const roster = teamTeal.querySelector('.roster')
+// roster.append(drillBitDarrel)
+
+// <node>.insertBefore / <node>.insertAfter allows you to insert a node before/after a child of a callee
+
+// 1) select team teal roster
+
+roster.insertBefore(drillBitDarrel, roster.querySelector('#larry-the-lion'))
+roster.insertBefore(drillBitDarrel.cloneNode(), roster.querySelector('#moneybags-michael'))
+roster.insertBefore(drillBitDarrel.cloneNode(true), roster.querySelector('#inbread-dog'))
+
+// <node>.cloneNode(true) <- providing the true flag will also clone the innerHTML of the node as well. By default cloneNode will only clone the node itself without descendants/children/innerHTML
